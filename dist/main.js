@@ -1,0 +1,1 @@
+(()=>{"use strict";console.log("text from differnt file"),console.log("hye")})();
