@@ -1,5 +1,4 @@
 /******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./node_modules/css-loader/dist/cjs.js!./src/styles.css":
@@ -8,6 +7,7 @@
   \**************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -24,9 +24,34 @@ var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBP
 ___CSS_LOADER_EXPORT___.push([module.id, `
 
 body{
-    background-color: red;
+    background-color: black;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+
 }
-`, "",{"version":3,"sources":["webpack://./src/styles.css"],"names":[],"mappings":";;AAEA;IACI,qBAAqB;AACzB","sourcesContent":["\n\nbody{\n    background-color: red;\n}\n"],"sourceRoot":""}]);
+
+#gameBoard{
+    background-color: #ccc;
+    width: 100vmin;
+    height: 100vmin;
+    display: grid;
+    grid-template-rows: repeat(21, 1fr);
+    grid-template-columns: repeat(21, 1fr);
+}
+
+.snake{
+    background-color: aqua;
+    border: .25vmin solid black;
+}
+
+.food{
+    background-color: yellow;
+    border: .25vmin solid black;
+}`, "",{"version":3,"sources":["webpack://./src/styles.css"],"names":[],"mappings":";;AAEA;IACI,uBAAuB;IACvB,YAAY;IACZ,aAAa;IACb,aAAa;IACb,uBAAuB;IACvB,mBAAmB;IACnB,SAAS;;AAEb;;AAEA;IACI,sBAAsB;IACtB,cAAc;IACd,eAAe;IACf,aAAa;IACb,mCAAmC;IACnC,sCAAsC;AAC1C;;AAEA;IACI,sBAAsB;IACtB,2BAA2B;AAC/B;;AAEA;IACI,wBAAwB;IACxB,2BAA2B;AAC/B","sourcesContent":["\n\nbody{\n    background-color: black;\n    width: 100vw;\n    height: 100vh;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    margin: 0;\n\n}\n\n#gameBoard{\n    background-color: #ccc;\n    width: 100vmin;\n    height: 100vmin;\n    display: grid;\n    grid-template-rows: repeat(21, 1fr);\n    grid-template-columns: repeat(21, 1fr);\n}\n\n.snake{\n    background-color: aqua;\n    border: .25vmin solid black;\n}\n\n.food{\n    background-color: yellow;\n    border: .25vmin solid black;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -39,6 +64,7 @@ body{
   \*****************************************************/
 /***/ ((module) => {
 
+"use strict";
 
 
 /*
@@ -133,6 +159,7 @@ module.exports = function (cssWithMappingToString) {
   \************************************************************/
 /***/ ((module) => {
 
+"use strict";
 
 
 module.exports = function (item) {
@@ -158,6 +185,7 @@ module.exports = function (item) {
   \************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -210,6 +238,7 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
   \****************************************************************************/
 /***/ ((module) => {
 
+"use strict";
 
 
 var stylesInDOM = [];
@@ -303,6 +332,7 @@ module.exports = function (list, options) {
   \********************************************************************/
 /***/ ((module) => {
 
+"use strict";
 
 
 var memo = {};
@@ -346,6 +376,7 @@ module.exports = insertBySelector;
   \**********************************************************************/
 /***/ ((module) => {
 
+"use strict";
 
 
 /* istanbul ignore next  */
@@ -365,6 +396,7 @@ module.exports = insertStyleElement;
   \**********************************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
 
 
 /* istanbul ignore next  */
@@ -384,6 +416,7 @@ module.exports = setAttributesWithoutAttributes;
   \***************************************************************/
 /***/ ((module) => {
 
+"use strict";
 
 
 /* istanbul ignore next  */
@@ -454,6 +487,7 @@ module.exports = domAPI;
   \*********************************************************************/
 /***/ ((module) => {
 
+"use strict";
 
 
 /* istanbul ignore next  */
@@ -471,58 +505,26 @@ module.exports = styleTagTransform;
 
 /***/ }),
 
-/***/ "./src/food.js":
-/*!*********************!*\
-  !*** ./src/food.js ***!
-  \*********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   food: () => (/* binding */ food)
-/* harmony export */ });
-const food = 'boxes';
-
-/***/ }),
-
 /***/ "./src/game.js":
 /*!*********************!*\
   !*** ./src/game.js ***!
   \*********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   game: () => (/* binding */ game)
-/* harmony export */ });
-const game = 'text from differnt file';
+/***/ (() => {
 
 
-/***/ }),
-
-/***/ "./src/input.js":
-/*!**********************!*\
-  !*** ./src/input.js ***!
-  \**********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _food_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./food.js */ "./src/food.js");
-/* harmony import */ var _game_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./game.js */ "./src/game.js");
-
-
-
-function getItems() {
-    console.log(_game_js__WEBPACK_IMPORTED_MODULE_1__.game);
-    console.log(_food_js__WEBPACK_IMPORTED_MODULE_0__.food);
+let lastRendeTime = 0;
+const SNAKE_SPEED = 3
+function main(currentTime) {
+    window.requestAnimationFrame(main)
+    const secondsSinceLastRender = (currentTime -lastRendeTime) /1000
+        if (secondsSinceLastRender < 1 /SNAKE_SPEED) return 
+    console.log('render')
+    lastRendeTime = currentTime
     
-
+    update()
+    draw()
 }
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getItems);
+window.requestAnimationFrame(main)
 
 /***/ })
 
@@ -600,19 +602,22 @@ function getItems() {
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
+"use strict";
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _input_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./input.js */ "./src/input.js");
+/* harmony import */ var _game_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game.js */ "./src/game.js");
+/* harmony import */ var _game_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_game_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles.css */ "./src/styles.css");
 
 
 
+
+
 console.log('hye')
-;(0,_input_js__WEBPACK_IMPORTED_MODULE_0__["default"])()
 
 })();
 
