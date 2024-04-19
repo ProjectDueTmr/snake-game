@@ -1,2 +1,1 @@
-export const text = 'text from differnt file';
-console.log(text)
+export const game = 'text from differnt file';
