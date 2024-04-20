@@ -1,4 +1,5 @@
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./node_modules/css-loader/dist/cjs.js!./src/styles.css":
@@ -7,7 +8,6 @@
   \**************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -64,7 +64,6 @@ body{
   \*****************************************************/
 /***/ ((module) => {
 
-"use strict";
 
 
 /*
@@ -159,7 +158,6 @@ module.exports = function (cssWithMappingToString) {
   \************************************************************/
 /***/ ((module) => {
 
-"use strict";
 
 
 module.exports = function (item) {
@@ -185,7 +183,6 @@ module.exports = function (item) {
   \************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -238,7 +235,6 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
   \****************************************************************************/
 /***/ ((module) => {
 
-"use strict";
 
 
 var stylesInDOM = [];
@@ -332,7 +328,6 @@ module.exports = function (list, options) {
   \********************************************************************/
 /***/ ((module) => {
 
-"use strict";
 
 
 var memo = {};
@@ -376,7 +371,6 @@ module.exports = insertBySelector;
   \**********************************************************************/
 /***/ ((module) => {
 
-"use strict";
 
 
 /* istanbul ignore next  */
@@ -396,7 +390,6 @@ module.exports = insertStyleElement;
   \**********************************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 
 
 /* istanbul ignore next  */
@@ -416,7 +409,6 @@ module.exports = setAttributesWithoutAttributes;
   \***************************************************************/
 /***/ ((module) => {
 
-"use strict";
 
 
 /* istanbul ignore next  */
@@ -487,7 +479,6 @@ module.exports = domAPI;
   \*********************************************************************/
 /***/ ((module) => {
 
-"use strict";
 
 
 /* istanbul ignore next  */
@@ -509,22 +500,75 @@ module.exports = styleTagTransform;
 /*!*********************!*\
   !*** ./src/game.js ***!
   \*********************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _snake__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./snake */ "./src/snake.js");
+
 
 
 let lastRendeTime = 0;
-const SNAKE_SPEED = 3
+const gameBoard = document.getElementById('gameBoard')
+
+
 function main(currentTime) {
     window.requestAnimationFrame(main)
     const secondsSinceLastRender = (currentTime -lastRendeTime) /1000
-        if (secondsSinceLastRender < 1 /SNAKE_SPEED) return 
-    console.log('render')
+        if (secondsSinceLastRender < 1 /_snake__WEBPACK_IMPORTED_MODULE_0__.SNAKE_SPEED) return 
     lastRendeTime = currentTime
     
     update()
+
     draw()
 }
 window.requestAnimationFrame(main)
+
+function update() {
+;(0,_snake__WEBPACK_IMPORTED_MODULE_0__.update)()
+}
+
+function draw() {
+(0,_snake__WEBPACK_IMPORTED_MODULE_0__.draw)(gameBoard)
+}
+
+/***/ }),
+
+/***/ "./src/snake.js":
+/*!**********************!*\
+  !*** ./src/snake.js ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   SNAKE_SPEED: () => (/* binding */ SNAKE_SPEED),
+/* harmony export */   draw: () => (/* binding */ draw),
+/* harmony export */   update: () => (/* binding */ update)
+/* harmony export */ });
+const SNAKE_SPEED = 3;
+const snakeBody = [
+    {x: 11, y: 11},
+    {x: 12, y: 11},
+    {x: 13, y: 11},
+]
+
+function update(){
+for( i = snakeBody.length -2; i >= 0; i--){
+    snakeBody[i + 1] = { ...snakeBody[i] }
+}
+    snakeBody[0].x += 0;
+    snakeBody[0].y += 1 
+}
+
+function draw(gameBoard){
+    snakeBody.forEach(segment => {
+        const snakeElement = document.createElement('div');
+        snakeElement.style.gridRowStart = segment.x
+        snakeElement.style.gridColumnStart = segment.y
+        snakeElement.classList.add('snake')
+        gameBoard.appendChild(snakeElement)
+    })
+}
 
 /***/ })
 
@@ -602,15 +646,13 @@ window.requestAnimationFrame(main)
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-"use strict";
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _game_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game.js */ "./src/game.js");
-/* harmony import */ var _game_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_game_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles.css */ "./src/styles.css");
 
 
