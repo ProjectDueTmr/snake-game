@@ -496,6 +496,20 @@ module.exports = styleTagTransform;
 
 /***/ }),
 
+/***/ "./src/food.js":
+/*!*********************!*\
+  !*** ./src/food.js ***!
+  \*********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   food: () => (/* binding */ food)
+/* harmony export */ });
+const food = 'boxes';
+
+/***/ }),
+
 /***/ "./src/game.js":
 /*!*********************!*\
   !*** ./src/game.js ***!
@@ -503,19 +517,19 @@ module.exports = styleTagTransform;
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _snake__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./snake */ "./src/snake.js");
+/* harmony import */ var _snake_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./snake.js */ "./src/snake.js");
 
 
 
-let lastRendeTime = 0;
+let lastRenderTime = 0;
 const gameBoard = document.getElementById('gameBoard')
 
 
 function main(currentTime) {
     window.requestAnimationFrame(main)
-    const secondsSinceLastRender = (currentTime -lastRendeTime) /1000
-        if (secondsSinceLastRender < 1 /_snake__WEBPACK_IMPORTED_MODULE_0__.SNAKE_SPEED) return 
-    lastRendeTime = currentTime
+    const secondsSinceLastRender = (currentTime - lastRenderTime) /1000
+        if (secondsSinceLastRender < 1 /_snake_js__WEBPACK_IMPORTED_MODULE_0__.SNAKE_SPEED) return 
+    lastRenderTime = currentTime
     
     update()
 
@@ -524,11 +538,52 @@ function main(currentTime) {
 window.requestAnimationFrame(main)
 
 function update() {
-;(0,_snake__WEBPACK_IMPORTED_MODULE_0__.update)()
+;(0,_snake_js__WEBPACK_IMPORTED_MODULE_0__.update)()
 }
 
 function draw() {
-(0,_snake__WEBPACK_IMPORTED_MODULE_0__.draw)(gameBoard)
+(0,_snake_js__WEBPACK_IMPORTED_MODULE_0__.draw)(gameBoard)
+}
+
+/***/ }),
+
+/***/ "./src/input.js":
+/*!**********************!*\
+  !*** ./src/input.js ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   getInputDirection: () => (/* binding */ getInputDirection)
+/* harmony export */ });
+let inputDirection = { x: 0, y: 0}
+let lastInputDirection = { x: 0, y: 0}
+
+window.addEventListener('keydown', e => {
+    switch (e.key){
+        case 'ArrowUp': 
+        if (lastInputDirection.y !== 0) break
+            inputDirection = { x: 0, y: -1}
+            break
+        case 'ArrowDown': 
+        if (lastInputDirection.y !== 0) break
+            inputDirection = { x: 0, y: 1}
+            break
+        case 'ArrowRight': 
+        if (lastInputDirection.x !== 0) break
+            inputDirection = { x: 1, y: 0}
+            break
+        case 'ArrowLeft': 
+        if (lastInputDirection.x !== 0) break
+            inputDirection = { x: -1, y: 0}
+            break
+    }
+})
+
+function getInputDirection() {
+    lastInputDirection = inputDirection;
+    return inputDirection;
 }
 
 /***/ }),
@@ -545,26 +600,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   draw: () => (/* binding */ draw),
 /* harmony export */   update: () => (/* binding */ update)
 /* harmony export */ });
+/* harmony import */ var _input_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./input.js */ "./src/input.js");
+
+
+
 const SNAKE_SPEED = 3;
-const snakeBody = [
-    {x: 11, y: 11},
-    {x: 12, y: 11},
-    {x: 13, y: 11},
-]
+const snakeBody = [{x: 11, y: 11}]
 
 function update(){
-for( i = snakeBody.length -2; i >= 0; i--){
+    const inputDirection = (0,_input_js__WEBPACK_IMPORTED_MODULE_0__.getInputDirection)()
+for(let i = snakeBody.length - 2; i >= 0; i--){
     snakeBody[i + 1] = { ...snakeBody[i] }
 }
-    snakeBody[0].x += 0;
-    snakeBody[0].y += 1 
+    snakeBody[0].x += inputDirection.x;
+    snakeBody[0].y += inputDirection.y;
 }
 
 function draw(gameBoard){
     snakeBody.forEach(segment => {
         const snakeElement = document.createElement('div');
-        snakeElement.style.gridRowStart = segment.x
-        snakeElement.style.gridColumnStart = segment.y
+        snakeElement.style.gridRowStart = segment.y
+        snakeElement.style.gridColumnStart = segment.x
         snakeElement.classList.add('snake')
         gameBoard.appendChild(snakeElement)
     })
@@ -653,7 +709,11 @@ var __webpack_exports__ = {};
   \**********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _game_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game.js */ "./src/game.js");
-/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles.css */ "./src/styles.css");
+/* harmony import */ var _snake_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./snake.js */ "./src/snake.js");
+/* harmony import */ var _food_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./food.js */ "./src/food.js");
+/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./styles.css */ "./src/styles.css");
+
+
 
 
 

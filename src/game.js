@@ -1,15 +1,15 @@
 
-import { update as updateSnake, draw as drawSnake, SNAKE_SPEED} from "./snake";
+import { update as updateSnake, draw as drawSnake, SNAKE_SPEED} from "./snake.js";
 
-let lastRendeTime = 0;
+let lastRenderTime = 0;
 const gameBoard = document.getElementById('gameBoard')
 
 
 function main(currentTime) {
     window.requestAnimationFrame(main)
-    const secondsSinceLastRender = (currentTime -lastRendeTime) /1000
+    const secondsSinceLastRender = (currentTime - lastRenderTime) /1000
         if (secondsSinceLastRender < 1 /SNAKE_SPEED) return 
-    lastRendeTime = currentTime
+    lastRenderTime = currentTime
     
     update()
 
