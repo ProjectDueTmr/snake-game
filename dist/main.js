@@ -504,9 +504,38 @@ module.exports = styleTagTransform;
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   food: () => (/* binding */ food)
+/* harmony export */   draw: () => (/* binding */ draw),
+/* harmony export */   update: () => (/* binding */ update)
 /* harmony export */ });
-const food = 'boxes';
+/* harmony import */ var _snake_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./snake.js */ "./src/snake.js");
+
+
+
+let food = getRandomFoodPosition
+const EXPANSION_RATE = 1
+function update(){
+    if((0,_snake_js__WEBPACK_IMPORTED_MODULE_0__.onSnake)(food)){
+        (0,_snake_js__WEBPACK_IMPORTED_MODULE_0__.expandSnake)(EXPANSION_RATE)
+        food = getRandomFoodPosition()
+    }
+}
+
+
+function draw(gameBoard){
+    const foodElement = document.createElement('div');
+        foodElement.style.gridRowStart = food.y
+        foodElement.style.gridColumnStart = food.x
+        foodElement.classList.add('food')
+        gameBoard.appendChild(foodElement)
+}
+
+function getRandomFoodPosition (){
+    let newFoodPosition 
+    while(newFoodPosition == null || (0,_snake_js__WEBPACK_IMPORTED_MODULE_0__.onSnake)(newFoodPosition)) {
+        newFoodPosition = randomGridPosition()
+    }
+    return newFoodPosition
+}
 
 /***/ }),
 
@@ -518,6 +547,7 @@ const food = 'boxes';
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _snake_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./snake.js */ "./src/snake.js");
+/* harmony import */ var _food_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./food.js */ "./src/food.js");
 
 
 
@@ -539,10 +569,13 @@ window.requestAnimationFrame(main)
 
 function update() {
 ;(0,_snake_js__WEBPACK_IMPORTED_MODULE_0__.update)()
+;(0,_food_js__WEBPACK_IMPORTED_MODULE_1__.update)()
 }
 
 function draw() {
-(0,_snake_js__WEBPACK_IMPORTED_MODULE_0__.draw)(gameBoard)
+    gameBoard.innerHTML = ''
+;(0,_snake_js__WEBPACK_IMPORTED_MODULE_0__.draw)(gameBoard)
+;(0,_food_js__WEBPACK_IMPORTED_MODULE_1__.draw)(gameBoard);
 }
 
 /***/ }),
@@ -598,6 +631,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   SNAKE_SPEED: () => (/* binding */ SNAKE_SPEED),
 /* harmony export */   draw: () => (/* binding */ draw),
+/* harmony export */   expandSnake: () => (/* binding */ expandSnake),
+/* harmony export */   onSnake: () => (/* binding */ onSnake),
 /* harmony export */   update: () => (/* binding */ update)
 /* harmony export */ });
 /* harmony import */ var _input_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./input.js */ "./src/input.js");
@@ -606,8 +641,9 @@ __webpack_require__.r(__webpack_exports__);
 
 const SNAKE_SPEED = 3;
 const snakeBody = [{x: 11, y: 11}]
-
+let newSegments = 0;
 function update(){
+    addSegments()
     const inputDirection = (0,_input_js__WEBPACK_IMPORTED_MODULE_0__.getInputDirection)()
 for(let i = snakeBody.length - 2; i >= 0; i--){
     snakeBody[i + 1] = { ...snakeBody[i] }
@@ -624,6 +660,28 @@ function draw(gameBoard){
         snakeElement.classList.add('snake')
         gameBoard.appendChild(snakeElement)
     })
+}
+
+function expandSnake(amount){
+    newSegments += amount
+}
+
+function onSnake(position) {
+    return snakeBody.some(segment => {
+        return equalPositions(segment, position)
+    })
+}
+
+function equalPositions(pos1, pos2){
+    return pos1.x === pos2.x && pos1.y === pos2.y
+}
+
+function addSegments() {
+    for (let i = 0; i < newSegments; i++) {
+        snakeBody.push({...snakeBody[snakeBody.length - 1]})
+    }
+
+    newSegments = 0;
 }
 
 /***/ })
