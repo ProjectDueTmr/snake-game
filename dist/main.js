@@ -565,6 +565,7 @@ function main(currentTime) {
         if(confirm('you lose. press ok to restart')){
             window.location = '/'
         }
+        return 
     }
 
     window.requestAnimationFrame(main)
